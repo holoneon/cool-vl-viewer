@@ -193,12 +193,23 @@ bool LLPanelLogin::postBuild()
 	mFirstNameCombo->setSuppressTentative(true);
 	mFirstNameCombo->setCommitCallback(onSelectLoginEntry);
 	mFirstNameCombo->setFocusLostCallback(onLoginComboLostFocus);
-	mFirstNameCombo->setPrevalidate(LLLineEditor::prevalidatePrintableNoSpace);
-	mFirstNameCombo->setCallbackUserData(this);
 
 	mLastNameEditor = getChild<LLLineEditor>("last_name_edit");
-	mLastNameEditor->setPrevalidate(LLLineEditor::prevalidatePrintableNoSpace);
-	mLastNameEditor->setCommitCallback(onLastNameEditLostFocus);
+
+        /* enable optional international First/Last Names */
+        if (gSavedSettings.getBOOL("AllowUTF8LoginNames"))
+        {
+            mFirstNameCombo->setPrevalidate(LLLineEditor::prevalidateUnicodeNoSpace);
+            mLastNameEditor->setPrevalidate(LLLineEditor::prevalidateUnicodeNoSpace);
+        }
+        else
+        {
+            mFirstNameCombo->setPrevalidate(LLLineEditor::prevalidatePrintableNoSpace);
+            mLastNameEditor->setPrevalidate(LLLineEditor::prevalidatePrintableNoSpace);
+        }
+
+        mFirstNameCombo->setCallbackUserData(this);
+        mLastNameEditor->setCommitCallback(onLastNameEditLostFocus);
 	mLastNameEditor->setCallbackUserData(this);
 
 	mPasswordEditor = getChild<LLLineEditor>("password_edit");

@@ -4663,6 +4663,17 @@
 		<key>Value</key>
 		<boolean>1</boolean>
 		</map>
+        <key>AllowUTF8LoginNames</key>
+                <map>
+                <key>Comment</key>
+                <string>Allow UTF-8 characters in legacy first/last login name fields. Intended for OpenSim grids that support international account names.</string>
+                <key>Persist</key>
+                <integer>1</integer>
+                <key>Type</key>
+                <string>Boolean</string>
+                <key>Value</key>
+                <integer>0</integer>
+                </map>
 	<key>FirstName</key>
 		<map>
 		<key>Comment</key>

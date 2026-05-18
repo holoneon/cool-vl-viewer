@@ -2613,6 +2613,30 @@ bool LLLineEditor::prevalidatePrintableNoSpace(const LLWString& str)
 	return rv;
 }
 
+/* support for international FirstName/LastName */
+//static
+bool LLLineEditor::prevalidateUnicodeNoSpace(const LLWString& str)
+{
+        for (LLWString::const_iterator iter = str.begin(); iter != str.end(); ++iter)
+        {
+                llwchar c = *iter;
+
+                // Preserve legacy first/last-name behavior: no whitespace inside fields.
+                if (LLStringOps::isSpace(c))
+                {
+                        return false;
+                }
+
+                // Reject ASCII control characters.
+                if (c < 0x20 || c == 0x7f)
+                {
+                        return false;
+                }
+        }
+
+        return true;
+}
+
 //static
 bool LLLineEditor::prevalidateASCII(const LLWString& str)
 {

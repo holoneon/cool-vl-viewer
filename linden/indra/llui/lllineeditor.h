@@ -261,6 +261,7 @@ public:
 	static bool prevalidateAlphaNumSpace(const LLWString& str);
 	static bool prevalidatePrintableNotPipe(const LLWString& str);
 	static bool prevalidatePrintableNoSpace(const LLWString& str);
+        static bool prevalidateUnicodeNoSpace(const LLWString& str);
 	static bool prevalidateASCII(const LLWString& str);
 
 	static bool postvalidateFloat(const std::string& str);
