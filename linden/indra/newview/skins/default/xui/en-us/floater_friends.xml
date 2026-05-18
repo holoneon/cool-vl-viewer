@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<floater name="friends"	title="Friends" rect_control="FloaterFriendsRect"
+ can_resize="true" can_minimize="true" can_close="true" can_drag_on_left="false"
+ width="293" min_width="293" height="300" min_height="300" follows="top|right">
+	<scroll_list name="friend_list" multi_select="true" draw_heading="true"
+	 can_resize="true" column_padding="0" search_column="1"
+	 left="10" right="-10" top="-20" bottom="66" follows="left|top|bottom|right">
+		<column name="icon_online_status" image="ff_online_status_button.tga"
+		 tool_tip="Online status" width="20" />
+		<column name="friend_name" dynamicwidth="true" label="Name"
+         tool_tip="Hold shift or control while clicking to select multiple friends. Double-click to start an IM session with a friend." />
+		<column name="icon_visible_online"
+		 image="ff_visible_online_button.tga" width="20"
+		 tool_tip="Friend can see when you&apos;re online" />
+		<column name="icon_visible_map"
+		 image="ff_visible_map_button.tga" width="20"
+		 tool_tip="Friend can locate you on the map" />
+		<column name="icon_edit_mine"
+		 image="ff_edit_mine_button.tga" width="20"
+		 tool_tip="Friend can edit, delete or take your objects" />
+		<column name="icon_visible_online_or_map_theirs"
+		 image="ff_visible_online_or_map_button_theirs.tga" width="20"
+		 tool_tip="You can see this friend when they are online or map them" />
+		<column name="icon_edit_theirs"
+		 image="ff_edit_theirs_button.tga" width="20"
+		 tool_tip="You can edit, delete or take this friend&apos;s objects" />
+		<column name="friend_last_update_generation" width="0" />
+	</scroll_list>
+	<text name="filter_text" font="SansSerif"
+	 left="12" bottom_delta="-17" width="38" height="16" follows="left|bottom">
+		Filter:
+	</text>
+	<search_editor name="filter_search" font="SansSerifSmall" label="Type the search string here"
+	 tool_tip="Type a search string here to filter by friend names in the list."
+	 left_delta="40" bottom_delta="0" height="16" width="232" />
+	<button	name="im_btn" label="IM" font="SansSerifSmall"
+	 tool_tip="Open an instant messaging session"
+	 left="10" bottom_delta="-23" width="70" height="20" follows="bottom|left" />	
+	<button	name="offer_teleport_btn" label="Offer TP" font="SansSerifSmall"
+	 tool_tip="Offer this friend a teleport to your current location"
+	 left_delta="75" bottom_delta="0" width="70" height="20" follows="bottom|left" />
+	<button	name="request_teleport_btn" label="Request TP" font="SansSerifSmall"
+	 tool_tip="Request a teleport from this friend (only works with if this friend uses a compatible viewer)."
+	 left_delta="75" bottom_delta="0" width="70" height="20" follows="bottom|left" />
+	<button	name="pay_btn" label="Pay" font="SansSerifSmall"
+	 tool_tip="Give virtual mobey (L$) to this friend"
+	 left_delta="75" bottom_delta="0" width="48" height="20" follows="bottom|left" />
+	<button	name="profile_btn" label="Profile" font="SansSerifSmall"
+	 tool_tip="Show picture, groups, and other information"
+	 left="10" bottom_delta="-20" width="70" height="20" follows="bottom|left" />		
+	<button	name="add_btn" label="Add..." font="SansSerifSmall"
+	 tool_tip="Offer friendship to a resident"
+	 left_delta="75" bottom_delta="0" width="70" height="20" follows="bottom|left" />
+	<button	name="remove_btn" label="Remove" font="SansSerifSmall"
+	 tool_tip="Remove this person from your friends list"
+	 left_delta="75" bottom_delta="0" width="70" height="20" follows="bottom|left" />	
+	<button	name="close_btn" label="OK" font="SansSerifSmall"
+	 tool_tip="Close this floater"
+	 right="-10" bottom_delta="0" width="48" height="20" follows="bottom|right" />	
+	<string name="Multiple">Multiple friends...</string>
+	<string name="total_friends">Total number of friends:</string>
+	<string name="no_friend">No friend for now.</string>
+</floater>

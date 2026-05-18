@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel border="true" bottom="0" follows="top|left" height="320" label="Region"
+     left="0" name="General" width="480">
+	<text name="region_text_lbl" font="SansSerif"
+	 left="10" bottom="-30" width="60" height="20" follows="left|top">
+		Region:
+	</text>
+	<text name="region_text" font="SansSerif"
+	 left="70" bottom_delta="0" width="400" height="20" follows="left|top">
+		unknown
+	</text>
+	<text name="version_channel_text_lbl" font="SansSerif"
+	 left="10" bottom_delta="-20" width="60" height="20" follows="left|top">
+		Version: 
+	</text>
+	<text name="version_channel_text" font="SansSerif"
+	 left="70" bottom_delta="0" height="20" width="400" follows="left|top">
+		unknown
+	</text>
+	<text name="region_type_lbl" font="SansSerif"
+	 left="10" bottom_delta="-20" width="60" height="20" follows="left|top">
+		Type: 
+	</text>
+	<text name="region_type" font="SansSerif"
+	 left="70" bottom_delta="0" height="20" width="400" follows="left|top">
+		unknown
+	</text>
+	<text name="access_text" font="SansSerif" mouse_opaque="true"
+	 tool_tip="Click the &apos;?&apos; button on the right for detailed explanations on this setting."
+	 left="10" bottom_delta="-22" width="50" height="20" follows="left|top">
+		Rating:
+	</text>
+	<combo_box name="access_combo"
+	 tool_tip="Click the &apos;?&apos; button on the right for detailed explanations on this setting."
+	 left_delta="60" bottom_delta="0" width="80" height="20" follows="left|top">
+		<combo_item name="Adult" value="42">
+			Adult
+		</combo_item>
+		<combo_item name="Mature" value="21">
+			Mature
+		</combo_item>
+		<combo_item name="PG" value="13">
+			PG
+		</combo_item>
+	</combo_box>
+	<button name="access_help" label="?" font="SansSerifSmall"
+	 tool_tip="Click for help about ratings."
+	 left_delta="110" bottom_delta="0" width="18" height="18" follows="left|top" />
+	<button name="manage_telehub_btn" label="Manage telehub..."
+     tool_tip="Telehubs are a legacy feature of SL (used back in the early SL days when you could not teleport everywhere you wanted)."
+	 left="250" bottom_delta="0" width="220" height="20" follows="left|top" />
+	<spinner name="agent_limit_spin" label="Agent limit" label_width="85"
+	 max_val="100" min_val="1" increment="1" decimal_digits="0"
+	 tool_tip="Sets the maximum number of avatars allowed in this region. Performance may vary depending on the number of avatars present in the region."
+	 left="11" bottom_delta="-30" width="132" height="20" follows="left|top" />
+	<spinner name="object_bonus_spin" label="Object bonus" label_width="97"
+	 tool_tip="Click the &apos;?&apos; button on the right for detailed explanations on this setting."
+	 max_val="10" min_val="1" increment="0.5"
+	 left="251" bottom_delta="0" width="160" height="20" follows="left|top" />
+	<button name="object_bonus_help" label="?" font="SansSerifSmall"
+	 tool_tip="Click for help about object bonus."
+	 left_delta="195" bottom_delta="0" width="18" height="18" follows="left|top" />
+	<check_box name="allow_land_resell_check" label="Allow land resell"
+	 tool_tip="Estate owners and managers can always sell any land owned by the estate owner. When this box is checked, buyers can also resell their land in this region."
+	 left="10" bottom="-144" width="185" height="20" follows="left|top" />
+	<check_box name="allow_parcel_changes_check" label="Allow land join/divide"
+	 tool_tip="Click the &apos;?&apos; button on the right for detailed explanations on this setting."
+	 left="10" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<button name="parcel_changes_help" label="?" font="SansSerifSmall"
+	 tool_tip="Click for help about land join/divide permission."
+	 bottom_delta="0" left_delta="170" width="18" height="18" follows="left|top"/>
+	<check_box name="block_terraform_check" label="Block terraform"
+	 tool_tip="When checked, land owners will not be able to terraform their land regardless of the per-parcel &apos;Edit terrain&apos; setting."
+	 left="10" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<check_box name="block_parcel_search_check" label="Block land show in search"
+	 tool_tip="When checked, blocks parcel owners from listing their parcels in search."
+	 left="10" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<check_box name="block_fly_check" label="Block fly"
+	 tool_tip="When checked, flying is disabled everywhere in the region, regardless of the parcel &apos;Fly&apos; setting."
+	 left="10" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<check_box name="block_fly_over_check" label="Block fly over"
+	 tool_tip="Extends access checks upwards to prevent flying over a parcel, regardless of the flying avatar&apos;s altitude (the default is to allow flying 50m above the parcel ground)."
+	 left="10" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<check_box name="restrict_pushobject" label="Restrict pushing"
+	 tool_tip="When checked, sets the full region to restricted permissions for pushing via the llPushObject() LSL function; then Residents may only be pushed by their own scripts or by the parcel&apos;s owner&apos;s."
+	 left="10" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<check_box name="allow_damage_check" label="Allow damage/enable combats"
+	 tool_tip="When checked, this enables the health system across all parcels regardless of their individual settings. When left unchecked, individual parcel owners will still be able to activate the health system on their parcels. If supported by the simulator, this setting also enables the Combat 2 system."
+	 left="250" bottom="-144" width="185" height="20" follows="left|top" />
+	<check_box name="combat_restrict_log" label="Restrict combat log"
+	 left="250" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<check_box name="combat_allow_damage_adjust" label="Allow damage adjustments"
+	 left="250" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<check_box name="combat_restore_health" label="Restore health on death"
+	 left="250" bottom_delta="-20" width="185" height="20" follows="left|top" />
+	<text name="on_death_text" font="SansSerifSmall" mouse_opaque="true"
+	 tool_tip="This combo allows to select the teleport destination of an agent when they &apos;die&apos; (i.e. when their health reaches zero)."
+	 left="250" bottom_delta="-28" width="80" height="20" follows="left|top">
+		On death TP:
+	</text>
+	<combo_box name="combat_on_death"
+	 tool_tip="This combo allows to select the teleport destination of an agent when they &apos;die&apos; (i.e. when their health reaches zero)."
+	 left_delta="98" bottom_delta="2" width="136" height="20" follows="left|top">
+		<combo_item name="item0" value="0">
+			Agent home
+		</combo_item>
+		<combo_item name="item1" value="1">
+			Parcel landing point
+		</combo_item>
+		<combo_item name="item2" value="2">
+			Region telehub
+		</combo_item>
+		<combo_item name="item3" value="3">
+			No teleportation
+		</combo_item>
+	</combo_box>
+	<spinner name="combat_damage_limit" label="Damage limit" label_width="95"
+	 max_val="10000" min_val="0" increment="1" decimal_digits="0"
+	 tool_tip="Sets the maximum amount of damage that can be inflicted to an agent."
+	 left="251" bottom_delta="-30" width="156" height="20" follows="left|top" />
+	<spinner name="combat_dps_spin" label="Damage throttle:" label_width="95"
+	 max_val="1000" min_val="0" increment="1" decimal_digits="0"
+	 tool_tip="Sets the maximum amount of damage per second that can be inflicted to an agent."
+	 left="251" bottom_delta="-26" width="156" height="20" follows="left|top" />
+	<spinner name="combat_hps_spin" label="Healing/second:" label_width="95"
+	 max_val="100" min_val="0" increment="1" decimal_digits="0"
+	 tool_tip="Sets the percentage of heatlh regeneration per second."
+	 left="251" bottom_delta="-26" width="156" height="20" follows="left|top" />
+	<spinner name="combat_invuln_spin" label="Invulnerability" label_width="95"
+	 max_val="100" min_val="0" increment="1" decimal_digits="0"
+	 tool_tip="Sets the invulnerability time in seconds, after death occurred."
+	 left="251" bottom_delta="-26" width="156" height="20" follows="left|top" />
+	<button name="apply_btn" label="Apply" enabled="false"
+	 left="370" bottom_delta="-28" width="100" height="20" follows="left|top" />
+	<button name="kick_btn" label="Teleport home one user..."
+	 left="10" bottom="40" width="220" height="24" follows="left|bottom" />
+	<button name="kick_all_btn" label="Teleport home all users..."
+	 left_delta="240" bottom_delta="0" width="220" height="24" follows="left|bottom" />
+	<button name="im_btn" label="Send message to region..."
+	 left="10" bottom_delta="-28" width="220" height="24" follows="left|bottom" />
+	<string name="name_coords_format">
+		%s (coords: %d, %d)
+	</string>
+</panel>

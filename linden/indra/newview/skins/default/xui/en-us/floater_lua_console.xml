@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="lua console" title="LUA console"
+ can_close="true" can_drag_on_left="false" can_minimize="true" can_resize="true"
+ width="550" height="380" min_width="550" min_height="380" rect_control="FloaterLuaConsoleRect">
+	<layout_stack name="layout_stack" orientation="vertical" animate="false"
+	 left="0" width="550" top="-20" bottom="0" follows="top|left|right|bottom">
+		<layout_panel name="layout_output" auto_resize="true" user_resize="true"
+		 left="0" width="550" height="160" min_height="80" follows="top|left|right|bottom">
+			<text_editor name="output_text" font="SansSerifSmall" max_length="100000000"
+			 word_wrap="true" spell_check="false" embedded_items="false" ignore_tab="false"
+			 text_readonly_color="TextDefaultColor" bg_readonly_color="TextBgWriteableColor" enabled="false"
+			 left="10" bottom="-158" right="-8" height="156" follows="left|right|top|bottom" />
+		</layout_panel>
+		<layout_panel name="layout_legend" auto_resize="false" user_resize="false"
+		 left="0" width="550" height="14" min_height="14" follows="top|left|right">
+			<view_border name="resize_handle_spot" bevel_style="out" border_thickness="1"
+			 bottom_delta="0" left="10" height="0" right="-8" follows="left|right|top"/>
+			<text name="input_label"
+			 left="20" bottom_delta="-8" width="300" height="7" halign="left" follows="left|top">
+				▼ ▼ Type the Lua code to execute below ▼ ▼
+			</text>
+			<text name="output_label"
+			 right="-20" bottom_delta="0" width="300" height="7" halign="right" follows="right|top">
+				▲ ▲ The Lua output text is printed above ▲ ▲
+			</text>
+		</layout_panel>	
+		<layout_panel name="layout_input" auto_resize="true" user_resize="true"
+		 left="0" width="550" height="150" min_height="80" follows="top|left|right|bottom">
+			<text_editor name="input_text" font="CourrierTiny" max_length="131072"
+			 word_wrap="true" spell_check="false" embedded_items="false" ignore_tab="false"
+			 left="10" bottom_delta="-148" right="-8" height="146" follows="top|left|right|bottom" />
+		</layout_panel>	
+		<layout_panel name="layout_buttons" auto_resize="false" user_resize="false"
+		 left="0" width="550" height="24" min_height="24" follows="top|left|right|bottom">
+			<button name="clear_output_btn" label="Clear output" font="SansSerif"
+			 tool_tip="Click to clear the Lua output text."
+			 left="10" bottom_delta="-20" width="90" height="20" follows="left" />
+			<button name="clear_input_btn" label="Clear input" font="SansSerif"
+			 tool_tip="Click to clear the Lua code you entered above."
+			 left_delta="96" bottom_delta="0" width="90" height="20" follows="left" />
+			<button name="load_btn" label="Load..." font="SansSerif"
+			 tool_tip="Click to load the input code from a *.lua file."
+			 left_delta="96" bottom_delta="0" width="90" height="20" follows="left" />
+			<button name="execute_btn" label="Execute" font="SansSerif"
+			 tool_tip="Click to execute the Lua code you entered above. Shortcut: CTRL ENTER"
+			 right="-12" bottom_delta="0" width="80" height="20" follows="right" />
+			<button name="next_btn" label="&gt;&gt;" font="SansSerif"
+			 tool_tip="Click to browse forward into the Lua command lines history. Shortcut: CTRL DOWN"
+			 right="-98" bottom_delta="0" width="30" height="20" follows="right" />
+			<button name="previous_btn" label="&lt;&lt;" font="SansSerif"
+			 tool_tip="Click to browse backward into the Lua command lines history. Shortcut: CTRL UP"
+			 right="-130" bottom_delta="0" width="30" height="20" follows="right" />
+			<button name="help_btn" label="?" font="SansSerif"
+			 tool_tip="Click to open the Cool VL Viewer Lua PDF manual."
+			 right="-168" bottom_delta="0" width="20" height="20" follows="right" />
+			<button name="list_btn" label="" can_focus="false" scale_image="false" image_selected="status_lua.tga" image_unselected="status_lua.tga"
+			 tool_tip="Click to list viewer-specific Lua functions available from this console"
+			 right="-196" bottom_delta="2" width="16" height="16" follows="right" />
+		</layout_panel>	
+	</layout_stack>
+	<string name="lua_manual_url">
+		http://sldev.free.fr/CoolVLViewerLuaManual.pdf
+	</string>
+	<string name="print_lua_funcs">
+		f={};for k,v in pairs(_G) do if type(v)=='function' then c=string.sub(k,1,1);if c&gt;='A' and c&lt;='Z' then f[#f+1]=k;end;end;end;table.sort(f);for i=1,#f,1 do print(f[i]);end
+	</string>
+</floater>

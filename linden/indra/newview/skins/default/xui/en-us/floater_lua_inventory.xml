@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="lua_floater_inventory" title="Inventory"
+ can_close="true" can_drag_on_left="false" can_minimize="true" can_resize="true"
+ width="284" height="400" min_width="284" min_height="400">
+<search_editor name="searchedit1" font="SansSerifSmall" label="Type the search string here"
+ lua_command="SetLuaFloaterInvFilter(GetFloaterName(),'inventory1',GetValue())"
+ left="10" bottom_delta="-36" height="18" width="264" follows="left|top|right" />
+<inventory_panel name="inventory1" allow_multi_select="true" border="true"
+ left="10" right="-10" top="-42" bottom="10" follows="left|top|right|bottom" />
+</floater>

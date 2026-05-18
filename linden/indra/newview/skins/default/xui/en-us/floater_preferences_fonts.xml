@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="fonts preferences" title="Fonts preferences"
+ can_close="true" can_drag_on_left="false" can_minimize="false" can_resize="false"
+ width="300" height="200" min_width="300" min_height="200">
+	<text name="notecard_font" font="SansSerifMedium" text_color="white" halign="center" valign="center"
+	 left="15" bottom_delta="-48" width="270" height="24" follows="top|left">
+		Note cards font
+	</text>
+	<text name="notecard_font_label" font="SansSerif"
+	 left="15" bottom_delta="-32" width="32" height="18" follows="top|left">
+		Font:
+	</text>
+	<combo_box name="notecard_fonts_combo" font="SansSerifSmall" max_chars="16" allow_text_entry="false"
+	 left_delta="40" bottom_delta="0" width="90" height="20" follows="top|left">
+		<combo_item type="string" name="Default" value="Default">
+			Default
+		</combo_item>
+		<combo_item type="string" name="SansSerif" value="SansSerif">
+			SansSerif
+		</combo_item>
+		<combo_item type="string" name="Helvetica" value="Helvetica">
+			Helvetica
+		</combo_item>
+		<combo_item type="string" name="Courrier" value="Courrier">
+			Courrier
+		</combo_item>
+		<combo_item type="string" name="Monospace" value="Monospace">
+			Monospace
+		</combo_item>
+	</combo_box>
+	<text name="notecard_size_label" font="SansSerif"
+	 left_delta="104" bottom_delta="0" width="32" height="18" follows="top|left">
+		Size:
+	</text>
+	<combo_box name="notecard_sizes_combo" font="SansSerifSmall" max_chars="16" allow_text_entry="false"
+	 left_delta="40" bottom_delta="0" width="84" height="20" follows="top|left">
+		<combo_item type="string" name="Tiny" value="Tiny">
+			Tiny
+		</combo_item>
+		<combo_item type="string" name="Little" value="Little">
+			Little
+		</combo_item>
+		<combo_item type="string" name="Small" value="Small">
+			Small
+		</combo_item>
+		<combo_item type="string" name="Medium" value="Medium">
+			Medium
+		</combo_item>
+		<combo_item type="string" name="Large" value="Large">
+			Large
+		</combo_item>
+		<combo_item type="string" name="Huge" value="Huge">
+			Huge
+		</combo_item>
+	</combo_box>
+	<view_border name="separator1" bevel_style="in" border_thickness="1"
+	 bottom_delta="-10" left="10" height="0" right="-10" follows="top|left"/>
+	<text name="script_font" font="Monospace" text_color="white" halign="center" valign="center"
+	 left="15" bottom_delta="-36" width="270" height="24" follows="top|left">
+		Script editor font
+	</text>
+	<text name="script_font_label" font="SansSerif"
+	 left="15" bottom_delta="-32" width="32" height="18" follows="top|left">
+		Font:
+	</text>
+	<combo_box name="script_fonts_combo" font="SansSerifSmall" max_chars="16" allow_text_entry="false"
+	 left_delta="40" bottom_delta="0" width="90" height="20" follows="top|left">
+		<combo_item type="string" name="Default" value="Default">
+			Default
+		</combo_item>
+		<combo_item type="string" name="SansSerif" value="SansSerif">
+			SansSerif
+		</combo_item>
+		<combo_item type="string" name="Helvetica" value="Helvetica">
+			Helvetica
+		</combo_item>
+		<combo_item type="string" name="Courrier" value="Courrier">
+			Courrier
+		</combo_item>
+		<combo_item type="string" name="Monospace" value="Monospace">
+			Monospace
+		</combo_item>
+	</combo_box>
+	<text name="script_size_label" font="SansSerif"
+	 left_delta="104" bottom_delta="0" width="32" height="18" follows="top|left">
+		Size:
+	</text>
+	<combo_box name="script_sizes_combo" font="SansSerifSmall" max_chars="16" allow_text_entry="false"
+	 left_delta="40" bottom_delta="0" width="84" height="20" follows="top|left">
+		<combo_item type="string" name="Tiny" value="Tiny">
+			Tiny
+		</combo_item>
+		<combo_item type="string" name="Little" value="Little">
+			Little
+		</combo_item>
+		<combo_item type="string" name="Small" value="Small">
+			Small
+		</combo_item>
+		<combo_item type="string" name="Medium" value="Medium">
+			Medium
+		</combo_item>
+		<combo_item type="string" name="Large" value="Large">
+			Large
+		</combo_item>
+		<combo_item type="string" name="Huge" value="Huge">
+			Huge
+		</combo_item>
+	</combo_box>
+	<view_border name="separator2" bevel_style="in" border_thickness="1"
+	 bottom_delta="-10" left="10" height="0" right="-10" follows="top|left"/>
+	<button name="cancel_btn" label="Cancel" font="SansSerif"
+	 bottom_delta="-26" left="15" height="20" width="80" follows="left|bottom" />
+	<button name="apply_btn" label="Apply" font="SansSerif"
+	 bottom_delta="0" right="-15" height="20" width="80" follows="right|bottom" />
+</floater>

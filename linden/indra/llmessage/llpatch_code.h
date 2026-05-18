@@ -1,0 +1,45 @@
+/**
+ * @file llpatch_code.h
+ * @brief Function declarations for encoding and decoding patches.
+ *
+ * $LicenseInfo:firstyear=2000&license=viewerlgpl$
+ *
+ * Copyright (c) 2000-2009, Linden Research, Inc.
+ *
+ * Second Life Viewer Source Code
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation; version 2.1 of the License only.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, write to the Free Software Foundation, Inc.
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA"
+ * $/LicenseInfo$
+ */
+
+#pragma once
+
+// Saves a mandatory include in sources using patch code
+#include "llpatch_dct.h"
+
+class LLBitPack;
+class LLGroupHeader;
+class LLPatchHeader;
+
+void init_patch_coding(LLBitPack& bitpack);
+void code_patch_group_header(LLBitPack& bitpack, LLGroupHeader* gopp);
+void code_patch_header(LLBitPack& bitpack, LLPatchHeader* ph, S32* patch);
+void code_end_of_data(LLBitPack& bitpack);
+void code_patch(LLBitPack& bitpack, S32* patch, S32 postquant);
+void end_patch_coding(LLBitPack& bitpack);
+
+void init_patch_decoding(LLBitPack& bitpack);
+void decode_patch_group_header(LLBitPack& bitpack, LLGroupHeader* gopp);
+void decode_patch_header(LLBitPack& bitpack, LLPatchHeader* ph,
+						 bool large_patch = false);
+void decode_patch(LLBitPack& bitpack, S32* patches);

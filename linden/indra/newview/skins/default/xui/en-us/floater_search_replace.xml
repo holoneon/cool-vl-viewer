@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="search replace" title="Search/replace"
+ can_close="true" can_drag_on_left="false" can_minimize="true" can_resize="false"
+ width="300" height="108">
+	<text name="search_label" font="SansSerifSmall" halign="left"
+	 left="5" bottom="-38" width="45" height="16" follows="left|top">
+		Search
+	</text>
+	<line_editor name="search_text" font="SansSerifSmall" max_length="254"
+	 handle_edit_keys_directly="false" select_on_focus="false" select_all_on_focus_received="false"
+	 left_delta="50" bottom_delta="0" width="240" height="16" follows="left|top" />
+	<text name="replace_label" font="SansSerifSmall" halign="left"
+	 left="5" bottom_delta="-20" width="45" height="16" follows="left|top">
+		Replace
+	</text>
+	<line_editor name="replace_text" font="SansSerifSmall" max_length="254"
+	 handle_edit_keys_directly="false" select_on_focus="false" select_all_on_focus_received="false"
+	 left_delta="50" bottom_delta="0" width="240" height="16" follows="left|top" />
+	<check_box name="case_text" label="Case insensitive search" font="SansSerifSmall" control_name="LSLFindCaseInsensitivity"
+	 left="50" bottom_delta="-20" width="240" height="16" follows="left|top" />
+	<button name="search_btn" label="Search" font="SansSerif"
+	 left="8" bottom_delta="-24" height="24" width="90" follows="left|top"/>
+	<button name="replace_btn" label="Replace" font="SansSerif"
+	 left_delta="98" bottom_delta="0" height="24" width="90" follows="left|top"/>
+	<button name="replace_all_btn" label="Replace all" font="SansSerif"
+	 left_delta="98" bottom_delta="0" height="24" width="90" follows="left|top"/>
+</floater>

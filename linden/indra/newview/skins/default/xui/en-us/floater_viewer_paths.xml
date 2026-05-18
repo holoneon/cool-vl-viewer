@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="viewer paths" title="Viewer executable binaries and data directories"
+ can_close="true" can_drag_on_left="false" can_minimize="false" can_resize="false"
+ width="600" height="376">
+	<text name="explanation" font="SansSerif"
+	 left="22" bottom_delta="-140" width="558" height="120" follows="left|top">
+		If you are using an anti-virus program, you might be confronted with slow down or FPS stuttering
+issues, short freezes or even crashes while using the viewer, because the latter is most likely
+unknown from the anti-virus program, is using a lot of network connections, is writing a lot of files
+in various caches, and is launching custom plugins (media, CEF, WebRTC plugins); every of these
+operations will trigger an anti-virus (useless) reaction/scan.
+
+		This floater lists the various executable programs and directory paths the viewer is using, and you
+should add them all to any anti-virus white list in order to ensure proper operation of the viewer.
+	</text>
+	<text name="viewer_text" font="SansSerif"
+	 left="10" bottom_delta="-30" width="580" height="16" follows="left|top">
+		Viewer executable file (main program):
+	</text>
+	<line_editor name="viewer" font="SansSerifSmall" enabled="false"
+	 tool_tip="Right-click and &quot;Select all&quot;, then right-click again and &quot;Copy&quot; to copy the path to the clipboard."
+	 left="12" bottom_delta="-20" width="580" height="18" follows="left|top" />
+	<text name="plugin_text" font="SansSerif"
+	 left="10" bottom_delta="-24" width="580" height="16" follows="left|top">
+		Plugin executable file (loader program for the media, web browser and WebRTC voice plugins) :
+	</text>
+	<line_editor name="plugin" font="SansSerifSmall" enabled="false"
+	 tool_tip="Right-click and &quot;Select all&quot;, then right-click again and &quot;Copy&quot; to copy the path to the clipboard."
+	 left="12" bottom_delta="-20" width="580" height="18" follows="left|top" />
+	<text name="dullahan_text" font="SansSerif"
+	 left="10" bottom_delta="-24" width="580" height="16" follows="left|top">
+		Dullahan executable file (CEF library host program for the web browser plugin):
+	</text>
+	<line_editor name="dullahan" font="SansSerifSmall" enabled="false"
+	 tool_tip="Right-click and &quot;Select all&quot;, then right-click again and &quot;Copy&quot; to copy the path to the clipboard."
+	 left="12" bottom_delta="-20" width="580" height="18" follows="left|top" />
+	<text name="settings_text" font="SansSerif"
+	 left="10" bottom_delta="-24" width="580" height="16" follows="left|top">
+		Settings (global &amp; per-account), logs (viewer, chat/IM logs, etc), CEF cookies parent directory:
+	</text>
+	<line_editor name="settings" font="SansSerifSmall" enabled="false"
+	 tool_tip="Right-click and &quot;Select all&quot;, then right-click again and &quot;Copy&quot; to copy the path to the clipboard."
+	 left="12" bottom_delta="-20" width="580" height="18" follows="left|top" />
+	<text name="cache_text" font="SansSerif"
+	 left="10" bottom_delta="-24" width="580" height="16" follows="left|top">
+		Viewer caches (inventory, textures, objects, assets, sounds, etc), CEF cache parent directory:
+	</text>
+	<line_editor name="cache" font="SansSerifSmall" enabled="false"
+	 tool_tip="Right-click and &quot;Select all&quot;, then right-click again and &quot;Copy&quot; to copy the path to the clipboard."
+	 left="12" bottom_delta="-20" width="580" height="18" follows="left|top" />
+</floater>

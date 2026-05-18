@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="active speakers" title="Active speakers" rect_control="FloaterActiveSpeakersRect"
+ can_close="true" can_drag_on_left="false" can_minimize="true" can_resize="true"
+ height="300" min_height="200" min_width="220" width="250">
+	<panel name="active_speakers_panel" mouse_opaque="false"
+	 left="0" right="250" top="300" bottom="0" follows="left|top|right|bottom">
+		<scroll_list name="speakers_list" multi_select="false" search_column="1" sort_column="2"
+		 can_resize="true" column_padding="0" draw_heading="true" draw_stripes="false"
+		 left="10" right="-10" top="-20" bottom="32" follows="left|top|bottom|right">
+			<column name="icon_speaking_status" sort="speaking_status" width="20" />
+			<column name="speaker_name" label="Name"  dynamicwidth="true"/>
+			<column name="speaking_status" label="" width="0" />
+		</scroll_list>
+		<slider name="speaker_volume" show_text="false"
+		 increment="0.05" initial_val="0.5" max_val="1.0" min_val="0.0"
+		 bottom="10" follows="left|bottom" height="15" left_delta="10" width="110" />
+		<button name="mute_btn" label="" toggle="true"
+		 tool_tip="Mute voice for this resident"
+		 image_selected="icn_speaker-muted_dark.tga" image_unselected="icn_speaker_dark.tga"
+		 left_delta="115" bottom_delta="0" width="25" height="20" follows="left|bottom" />
+		<button name="devices_btn" label="🎙🔊" font="Emoji"
+		 tool_tip="Press to open the audio devices configuration floater."
+		 bottom="6" right="-12" width="42" height="22" follows="right|bottom" />
+	</panel>
+</floater>

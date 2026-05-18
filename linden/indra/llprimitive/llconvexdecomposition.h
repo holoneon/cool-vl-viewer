@@ -1,0 +1,232 @@
+/**
+ * @file llconvexdecomposition.h
+ * @brief LLConvexDecomposition interface definition
+ *
+ * $LicenseInfo:firstyear=2011&license=viewerlgpl$
+ *
+ * Copyright (c) 2011, Linden Research, Inc.
+ * Copyright (c) 2026, Henri Beauchamp
+ *
+ * Second Life Viewer Source Code
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation; version 2.1 of the License only.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, write to the Free Software Foundation, Inc.
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA"
+ * $/LicenseInfo$
+ */
+
+#pragma once
+
+#include "llerror.h"
+
+#if LL_WINDOWS
+# define LLCD_CALL __cdecl
+#else
+# define LLCD_CALL
+#endif
+
+struct LLCDParam
+{
+	enum LLCDParamType
+	{
+		LLCD_INVALID = 0,
+		LLCD_INTEGER,
+		LLCD_FLOAT,
+		LLCD_BOOLEAN,
+		LLCD_ENUM
+	};
+
+	struct LLCDEnumItem
+	{
+		const char*	mName;
+		S32			mValue;
+	};
+
+	union LLCDValue
+	{
+		F32	mFloat;
+		S32	mIntOrEnumValue;
+		S32	mBool;
+	};
+
+	union LLCDParamDetails
+	{
+		struct
+		{
+			LLCDValue mLow;
+			LLCDValue mHigh;
+			LLCDValue mDelta;
+		} mRange;
+
+		struct
+		{
+			S32				mNumEnums;
+			LLCDEnumItem*	mEnumsArray;
+		} mEnumValues;
+	};
+
+	const char*			mName;
+	const char*			mDescription;
+	LLCDParamType		mType;
+	LLCDParamDetails	mDetails;
+	LLCDValue			mDefault;
+	S32					mStage;
+
+	// WARNING: Only the LLConvexDecomposition implementation
+	// should change this value
+	S32					mReserved;
+};
+
+struct LLCDStageData
+{
+	const char*	mName;
+	const char*	mDescription;
+	S32			mSupportsCallback;
+};
+
+struct LLCDMeshData
+{
+	enum IndexType
+	{
+		INT_16,
+		INT_32
+	};
+
+	const F32*	mVertexBase = NULL;
+	S32			mVertexStrideBytes = 0;
+	S32			mNumVertices = 0;
+	const void*	mIndexBase = NULL;
+	IndexType	mIndexType = INT_32;
+	S32			mIndexStrideBytes = 0;
+	S32			mNumTriangles = 0;
+};
+
+struct LLCDHull
+{
+	const F32*	mVertexBase = NULL;
+	S32			mVertexStrideBytes = 0;
+	S32			mNumVertices = 0;
+};
+
+enum LLCDResult
+{
+	LLCD_OK = 0,
+	LLCD_UNKOWN_ERROR,
+	LLCD_NULL_PTR,
+	LLCD_INVALID_STAGE,
+	LLCD_UNKNOWN_PARAM,
+	LLCD_BAD_VALUE,
+	LLCD_REQUEST_OUT_OF_RANGE,
+	LLCD_INVALID_MESH_DATA,
+	LLCD_INVALID_HULL_DATA,
+	LLCD_STAGE_NOT_READY,
+	LLCD_INVALID_THREAD,
+	LLCD_NOT_IMPLEMENTED
+};
+
+// This callback will receive a string describing the current subtask being
+// performed as well as a pair of numbers indicating progress. The values
+// should not be interpreted as a completion percentage as 'current' may be
+// greater than 'final'. If the callback returns zero, the decomposition will
+// be terminated.
+typedef S32(LLCD_CALL *llcd_callback_t)(const char* description,
+										S32 current_progress,
+										S32 final_progress);
+
+class LLConvexDecomposition
+{
+	friend class LLFloaterModelPreview;
+
+protected:
+	LOG_CLASS(LLConvexDecomposition);
+
+public:
+	// Obtains a pointer to the actual implementation
+	static LLConvexDecomposition* getInstance();
+	// Obtains the HACD implementation (regardless of user preference). HB
+	static LLConvexDecomposition* getHACDInstance();
+
+	static LLCDResult initSystem();
+	static LLCDResult quitSystem();
+
+	virtual ~LLConvexDecomposition() = default;
+
+	// Generate a decomposition object handle
+	virtual void genDecomposition(S32& decomp) = 0;
+	// Delete decomposition object handle
+	virtual void deleteDecomposition(S32 decomp) = 0;
+	// Bind given decomposition handle
+	// Commands operate on currently bound decomposition
+	virtual void bindDecomposition(S32 decomp) = 0;
+
+	// Sets *params_out to the address of the LLCDParam array and returns
+	// the number of parameters
+	virtual S32 getParameters(const LLCDParam** params_out) = 0;
+
+	// Sets *stages_out to the address of the LLCDStageData array and returns
+	// the number of stages
+	virtual S32 getStages(const LLCDStageData** stages_out) = 0;
+
+	// Set a parameter by name. Pass enum values as integers.
+	virtual LLCDResult setParam(const char* name, F32 val) = 0;
+	virtual LLCDResult setParam(const char* name, S32 val) = 0;
+	virtual LLCDResult setParam(const char* name, bool val) = 0;
+
+	// Set incoming mesh data. Data is copied to local buffers and will
+	// persist until the next setMeshData call
+	virtual LLCDResult setMeshData(const LLCDMeshData* data, bool vertex_based) = 0;
+
+	// Register a callback to be called periodically during the specified stage
+	// See the typedef above for more information
+	virtual LLCDResult registerCallback(S32 stage, llcd_callback_t cb) = 0;
+
+	// Execute the specified decomposition stage
+	virtual LLCDResult executeStage(S32 stage) = 0;
+	virtual LLCDResult buildSingleHull() = 0 ;
+
+	// Gets the number of hulls generated by the specified decompositions stage
+	virtual S32 getNumHullsFromStage(S32 stage) = 0;
+
+	// Populates hulloutp to reference the internal copy of the requested hull
+	// The data will persist only until the next executeStage call for that stage.
+	virtual LLCDResult getHullFromStage(S32 stage, S32 hull, LLCDHull* hulloutp) = 0;
+
+	virtual LLCDResult getSingleHull(LLCDHull* hulloutp) = 0 ;
+
+	// Populates the dataoutp to reference the utility's copy of the mesh
+	// geometry for the hull and stage specified. You must copy this data if
+	// you want to continue using it after the next executeStage call.
+	// *TODO: implement lock of some kind to disallow this call if data not yet
+	// ready.
+	virtual LLCDResult getMeshFromStage(S32 stage, S32 hull,
+										LLCDMeshData* dataoutp) = 0;
+
+	// Creates a mesh from hullinp and temporarily stores it internally in the
+	// utility. The mesh data persists only until the next call.
+	virtual LLCDResult getMeshFromHull(LLCDHull* hullinp,
+									   LLCDMeshData* meshoutp) = 0;
+
+	// Takes meshinp, generates a single convex hull from it, converts that to
+	// a mesh stored internally, and populates meshoutp to reference the
+	// internally stored data. The data is persistent only until the next call.
+	virtual LLCDResult generateSingleHullMeshFromMesh(LLCDMeshData* meshinp,
+													  LLCDMeshData* meshoutp) = 0;
+
+	LL_INLINE static bool usingVHACD()		{ return sUseVHACD; }
+
+private:
+	// Do not use outside of the LLFloaterModelPreview constructor. HB
+	static void setUseVHACD(bool b);
+
+private:
+	static LLConvexDecomposition*	sConvexDecompositorp;
+	static bool						sUseVHACD;
+};

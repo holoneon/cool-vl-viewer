@@ -1,0 +1,88 @@
+The source code of the Cool VL Viewer falls under two different licenses,
+depending on the source file.
+
+The current version of the Cool VL Viewer was forked back in 2010 from the
+Snowglobe viewer, an Open Source, GPL v2 (plus FLOSS) fork of Linden Lab's
+v1.23 viewer.
+When Linden lab released their v2 viewer, they re-licensed all their code to
+the LGPL v2.1 license, meaning that the largest part (but not the entirety) of
+the Snowglobe GPL source code could also be found as identical code under the
+LGPL license in v2 viewers.
+During the following 16 years, I kept backporting a lot more code from v2+
+viewers into the Cool VL Viewer, and this code was also LGPL code, but to keep
+things as "simple" as possible, I re-licensed it as GPL in my viewer (since GPL
+is stricter, and LGPL is compatible with such relicensing).
+But nowadays, I want to re-license as much code as I can under the LGPL to ease
+the task of any TPV developer wanting to reuse the Cool VL Viewer code in their
+own LGPL viewer (since pretty much all other still maintained TPVs are forked
+from LL's v2+ LGPL viewer).
+
+So, as of today (1), the code originating from the Snowgobe viewer and which
+was not reused "as is" (i.e. was not re-licensed) in v2+ viewers still falls
+under the GPL v2 license with FLOSS exceptions (see below). This is mostly (2)
+UI-related code (since LL rewrote the UI for their v2 viewer), meaning most
+files found in the llui library (with the exceptions of my own code and the
+backports from v2+ viewers for UI elements that did not exist in Snowgobe), as
+well as almost all the panels and floaters code in newview (my own code
+excepted).
+
+The code I wrote (or rewrote in its vast majority) myself falls under the LGPL
+v2.1 license, just like the code that I backported from v2+ viewers.
+
+The code that existed in Snowgobe and got reused and re-licensed by LL in their
+v2 viewer has also been re-licensed in this viewer under the LGPL v2.1 license.
+
+So, if you wish to "borrow" stuff from this viewer, it is safe for you to reuse
+under the LGPL v2.1 *any* code which is contained inside a file with the *LGPL*
+license header.
+
+The viewer as a whole, is still considered GPL v2 (i.e. the most restrictive of
+the two licenses).
+
+Henri Beauchamp.
+
+---
+(1) 2026-05-09
+(2) There are also a few files related to old features that existed in the v1
+viewers but got removed from v2, such as the "Classic clouds", the animated
+Linden trees, and a few things like that.
+
+-------------------------------------------------------------------------------
+Snowglobe source code License:
+
+Source code
+========
+The license for the source code in this distribution should be clearly
+marked on each source file.  Unless otherwise specified, the source
+code in this distribution ("Source Code") is provided by Linden Lab to
+you under the terms of the GNU General Public License, version 2.0
+("GPL"), unless you have obtained a separate licensing agreement
+("Other License"), formally executed by you and Linden Lab.  Terms of
+the GPL can be found in doc/GPL-license.txt in this distribution, or
+online at http://secondlife.com/developers/opensource/gplv2
+
+There are special exceptions to the terms and conditions of the GPL as
+it is applied to this Source Code. View the full text of the exception
+in the file doc/FLOSS-exception.txt in this software distribution, or
+online at http://secondlife.com/developers/opensource/flossexception
+
+By copying, modifying or distributing this software, you acknowledge
+that you have read and understood your obligations described above,
+and agree to abide by those obligations.
+
+ALL LINDEN LAB SOURCE CODE IS PROVIDED "AS IS." LINDEN LAB MAKES NO
+WARRANTIES, EXPRESS, IMPLIED OR OTHERWISE, REGARDING ITS ACCURACY,
+COMPLETENESS OR PERFORMANCE.
+
+Logos and trademarks
+==============
+
+"Second Life" and "Linden Lab" are registered trademarks of Linden
+Research, Inc.  Other trademarks include (but are not limited to): the
+names Linden and Linden Research, as well as the Linden Lab Hexagon
+Design and the Second Life Hand Design logos.
+
+Use of logos and trademarks are subject to the Linden Lab trademark
+policy, available at:
+
+http://secondlife.com/corporate/trademark/

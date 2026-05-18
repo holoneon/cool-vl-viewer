@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<floater name="new im" title="New IM" can_close="false" can_minimize="false" can_resize="false"
+ can_drag_on_left="false" can_tear_off="false" enabled="true" border="true" mouse_opaque="false"
+ top="0" left="0" height="300" width="500" min_height="150" min_width="200"
+ follows="left|top|right|bottom">
+	<tab_container bottom="2" height="300" width="500" left="0"
+		name="lists" tab_min_width="80" tab_position="left" follows="left|top|right|bottom">
+		<panel name="Friends" label="Friends" border="true" mouse_opaque="true"
+		 left="1" bottom="-292" width="496" height="288" follows="left|top|right|bottom">
+			<name_list name="user_list" multi_select="false" use_display_names="true"
+			 allow_calling_card_drop="false" draw_heading="false"
+			 left="2" bottom="-286" width="490" height="282" follows="left|top|right|bottom" />
+		</panel>
+		<panel name="Groups" label="Groups" border="true" mouse_opaque="true"
+		 left="1" bottom="-292" width="496" height="288" follows="left|top|right|bottom">
+			<name_list
+			 allow_calling_card_drop="false" background_visible="true" bottom="-286"
+			 draw_border="true" draw_heading="false"
+			 enabled="true" follows="left|top|right|bottom"
+			 height="282" left="2" mouse_opaque="true" multi_select="false"
+			 name="group_list" width="490"/>
+		</panel>
+	</tab_container>
+	<search_editor name="filter_search" font="SansSerifSmall" label="Filter"
+	 tool_tip="Type a search string here to filter by friend and group names in the lists."
+	 left="6" bottom="-60" height="16" width="72" follows="left|top" />
+	<button name="start_btn" label="Start" font="SansSerif"
+	 left="6" bottom="-270" width="68" height="20" follows="left|bottom" />
+	<button name="close_btn" label="Close" font="SansSerif"
+	 left="6" bottom="-292" width="68" height="20" follows="left|bottom" />
+</floater>

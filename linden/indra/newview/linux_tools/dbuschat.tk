@@ -1,0 +1,104 @@
+#!/usr/bin/env wish
+
+# Chat input line for use with the Cool VL Viewer D-Bus interface for Lua
+# (c)2024 Henri Beauchamp. This script is provided under the GPL license.
+#
+# Note: either the dbus-tcl package or the dbus-send command must be installed
+# on the system for this script to work. The viewer must be running (with a
+# user logged in) so that its D-Bus server runs and accepts commands. It also
+# must be configured to accept Lua commands via D-Bus (via the menu option
+# "Advanced" -> "Lua scripting" -> "Accept Lua commands from D-Bus").
+
+if {$tcl_version < 8.4} {
+	tk_messageBox -type ok -icon error \
+		-message "This program needs Tcl/Tk v8.4 or newer.\nThe current version is: $tcl_version"
+	exit
+}
+
+set DbusDestination "com.secondlife.ViewerAppAPIService"
+set DbusPath "/com/secondlife/ViewerAppAPI"
+set DbusInterface "com.secondlife.ViewerAppAPI"
+set DbusMethod "LuaExec"
+
+set dbuscmd ""
+if {[catch {package require dbus} result]} {
+	set dbuscmd "dbus-send"
+}
+
+wm title . "Cool VL Viewer chat input"
+
+# Attempt to set an application icon for this Tk window. Note: PNG format only
+# supported in Tk v8.6 and newer.
+if {$tcl_version >= 8.6} {
+	catch {
+		set script_path [file dirname [file normalize [info script]]]
+		set icon_file [file join $script_path "cvlv_icon.png"]
+		image create photo .i1 -format png -file $icon_file
+		wm iconphoto . -default .i1
+		#wm withdraw .
+		#wm state . normal
+	}
+}
+
+set range 0
+set animate 0
+
+proc sendchat {emote} {
+	global dbuscmd range animate DbusDestination DbusPath DbusInterface DbusMethod
+	set chattext [.input.text get 1.0 end]
+	if {[string trim $chattext] == ""} {
+		return
+	}
+	set chattext [string map { \[\[ (( \]\] )) } $chattext]
+	if {$emote} {
+		set chattext "/me $chattext"
+	}
+	set type ""
+	if {$range == -1} {
+		set type "whisper"
+	} elseif {$range == 1} {
+		set type "shout"
+	}
+	if {$animate} {
+		append type " animate"
+	}
+	set command "SendChat(\[\[$chattext\]\],'$type')"
+	if {$dbuscmd eq ""} {
+		set dbus_id [dbus connect session]
+		catch {dbus call $dbus_id -autostart 0 -dest $DbusDestination -signature s $DbusPath $DbusInterface $DbusMethod $command}
+		dbus close $dbus_id
+	} else {
+		catch {exec $dbuscmd --session --type=method_call --dest=$DbusDestination $DbusPath $DbusInterface.$DbusMethod string:$command}
+	}
+	.input.text delete 1.0 end
+}
+
+frame .caption -borderwidth 2
+frame .input -borderwidth 2
+frame .buttons -borderwidth 2
+pack .caption .input .buttons -side top
+
+label .caption.label -text "Enter your chat text below:"
+pack .caption.label
+
+text .input.text -width 80 -height 6 -wrap word -relief sunken -yscrollcommand {.input.scrollbar set}
+scrollbar .input.scrollbar -command {.input.text yview}
+pack .input.text .input.scrollbar -side left -fill y
+
+button .buttons.say -text "Chat" -command {sendchat 0}
+button .buttons.emote -text "Emote" -command {sendchat 1}
+button .buttons.clear -text "Clear" -command {.input.text delete 1.0 end}
+radiobutton .buttons.whisper -text "Whisper" -variable range -value -1
+radiobutton .buttons.normal -text "Say" -variable range -value 0
+radiobutton .buttons.shout -text "Shout" -variable range -value 1
+checkbutton .buttons.animate -text "Animate" -variable animate
+button .buttons.close -text "Close" -command {exit}
+label .buttons.space1 -text " "
+label .buttons.space2 -text " "
+label .buttons.space3 -text " "
+label .buttons.space4 -text " "
+label .buttons.space5 -text " "
+pack .buttons.whisper .buttons.normal .buttons.shout \
+	 .buttons.space1 .buttons.say .buttons.space2 .buttons.emote \
+	 .buttons.space3 .buttons.animate \
+     .buttons.space4 .buttons.clear .buttons.space5 .buttons.close -side left

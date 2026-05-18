@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<panel name="voice" label="Voice chat" border="true"
+ top="20" width="517" height="454" follows="left|top|right|bottom">
+	<text name="webrtc" font="SansSerifBold"
+	  right="-10" bottom="-30" height="20" width="54" follows="top|right">
+		WebRTC
+	</text>
+	<text_editor name="voice_unavailable" font="SansSerifSmall" visible="false"
+	 enabled="false" tab_stop="false" word_wrap="true"
+	 hide_border="true" hide_scrollbar="true" bg_readonly_color="0 0 0 0"
+	 bottom="-28" left="8" height="20" width="450" follows="left|top">
+		Voice chat is not available
+	</text_editor>
+	<check_box name="enable_voice_check" label="Enable voice chat" font="SansSerifSmall"
+	 left="8" bottom_delta="0" width="200" height="16" follows="left|top" />
+	<radio_group name="ear_location" draw_border="false"
+	 left_delta="20" bottom_delta="-44" width="364" height="40" follows="left|top">
+		<radio_item name="0" left="3" bottom="-19" width="315" height="16" follows="left|top">
+			Hear voice chat from camera position.
+		</radio_item>
+		<radio_item name="1" left="3" bottom="-35" width="315" height="16" follows="left|top">
+			Hear voice chat from avatar position.
+		</radio_item>
+	</radio_group>
+	<text name="push_to_talk_heading" font="SansSerifSmall"
+	 left_delta="0" bottom_delta="-18" width="445" height="16" follows="left|top">
+		Push to talk
+	</text>
+	<text_editor name="voice_chat_description" font="SansSerifSmall" word_wrap="true"
+	 bg_readonly_color="0 0 0 0" hide_scrollbar="true" hide_border="true" enabled="false"
+	 left_delta="20" bottom_delta="-60" width="465" height="65" follows="left|top">
+		Push-to-talk mode lets you control when your voice is transmitted. When in toggle mode, press and release the push-to-talk trigger to switch your microphone on and off. When not in toggle mode, the microphone is active only when the trigger is held down.
+	</text_editor>
+	<check_box name="push_to_talk_toggle_check" label="Use push-to-talk in toggle mode" font="SansSerifSmall"
+	 left_delta="0" bottom_delta="-20" width="200" height="16" follows="left|top" />
+	<text name="push_to_talk_label" font="SansSerifSmall"
+	 left_delta="4" bottom_delta="-24" width="445" height="16" follows="left|top">
+		Push-to-talk trigger:
+	</text>
+	<line_editor name="modifier_combo" font="SansSerifSmall" halign="right"
+	 max_length="254" mouse_opaque="false" enabled="false"
+	 left_delta="0" bottom_delta="-20" width="280" height="19" follows="top|left" />
+	<button name="set_voice_hotkey_button" label="Set key" font="SansSerif"
+	 left_delta="0" bottom_delta="-25" width="115" height="20" follows="left|top" />
+	<button name="set_voice_middlemouse_button" label="Middle mouse button" font="SansSerif"
+	 left_delta="120" bottom_delta="0" width="160" height="20" follows="left|top" />
+	<text name="lip_sync_heading" font="SansSerifSmall"
+	 left="28" bottom_delta="-24" width="445" height="16" follows="left|top">
+		Lip sync mouth animation
+	</text>
+	<check_box name="enable_lip_sync_check" label="Enable lip sync animation" font="SansSerifSmall"
+	 left_delta="20" bottom_delta="-20" width="200" height="16" follows="left|top" />
+	<text name="privacy_heading"
+	 left="28" bottom_delta="-24" width="445" height="16" follows="left|top">
+		Privacy options
+	</text>
+	<check_box name="voice_call_friends_only_check" font="SansSerifSmall"
+	 label="Only accept voice calls from people on my friends list"
+	 left_delta="20" bottom_delta="-20" width="200" height="16" follows="left|top" />
+	<check_box name="auto_disengage_mic_check" font="SansSerifSmall"
+	 label="Switch off microphone when ending IM calls"
+	 left_delta="0" bottom_delta="-18" width="200" height="16" follows="left|top" />
+	<button name="device_settings_btn" label="Device settings..." font="SansSerif"
+	 tool_tip="Press to select the audio devices (microphone and speakers). Only available after login."
+	 left="28" bottom_delta="-28" width="164" height="20" follows="left|top" />
+	<text_editor name="device_settings_text" font="SansSerifSmall" enabled="false"
+	 bg_readonly_color="0 0 0 0" hide_border="true" hide_scrollbar="true" word_wrap="true"
+	 left="28" bottom_delta="-32" width="450" height="35" follows="left|top">
+		NOTE: Running the 'Device settings' will temporarily disconnect you from voice chat, and changes you make will be immediately applied.
+	</text_editor>
+	<check_box name="agc_check" label="Automatic gain control" font="SansSerifSmall"	
+	 left="28" bottom_delta="-28" width="140" height="16" follows="left|top" />
+	<check_box name="echo_check" label="Echo cancellation" font="SansSerifSmall"	
+	 left_delta="150" bottom_delta="0" width="120" height="16" follows="left|top" />
+	<spinner name="noise_suppression_level"
+	 label="Noise suppression level:" font="SansSerifSmall" label_width="134"
+	 tool_tip="0 for no suppression, 4 for maximum suppression level."
+	 decimal_digits="0" min_val="0" max_val="4" increment="1"
+	 left_delta="130" bottom_delta="0" width="168" height="16" follows="left|top" />
+</panel>

@@ -1,0 +1,58 @@
+/**
+ * @file llproductinforequest.h
+ * @author Kent Quirk
+ * @brief Get region type descriptions (translation from SKU to description)
+ *
+ * $LicenseInfo:firstyear=2009&license=viewerlgpl$
+ *
+ * Copyright (c) 2009, Linden Research, Inc.
+ *
+ * Second Life Viewer Source Code
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation; version 2.1 of the License only.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, write to the Free Software Foundation, Inc.
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA"
+ * $/LicenseInfo$
+ */
+
+#pragma once
+
+#include "llsd.h"
+#include "llsingleton.h"
+
+// This is a singleton to manage a cache of information about land types. The
+// land system provides a capability to get information about the set of
+// possible land sku, name, and description information. We use description in
+// the UI, but the sku is provided in the various messages; this tool provides
+// translation between the systems.
+
+class LLProductInfoRequestManager : public LLSingleton<LLProductInfoRequestManager>
+{
+	friend class LLSingleton<LLProductInfoRequestManager>;
+
+protected:
+	LOG_CLASS(LLProductInfoRequestManager);
+
+public:
+	LLProductInfoRequestManager();
+
+	std::string getDescriptionForSku(const std::string& sku);
+
+	LL_INLINE void create()			{}
+
+private:
+	void initSingleton();
+
+	void getLandDescriptionsCoro(const std::string& url);
+
+private:
+	LLSD mSkuDescriptions;
+};

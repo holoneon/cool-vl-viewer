@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<menu bottom="100" color="MenuDefaultBgColor" drop_shadow="true" height="101" left="100"
+	 mouse_opaque="false" name="media_ctrl_popup" opaque="true" width="128">
+	<menu_item_call name="select_all" label="Select all"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="MediaCtrl.SelectAll" userdata="0" />
+		<on_enable function="MediaCtrl.CanSelectAll" />
+	</menu_item_call>
+	<menu_item_separator />
+	<menu_item_call name="cut" label="Cut"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="MediaCtrl.Cut" userdata="0" />
+		<on_enable function="MediaCtrl.CanCut" />
+	</menu_item_call>
+	<menu_item_call name="copy" label="Copy"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="MediaCtrl.Copy" userdata="0" />
+		<on_enable function="MediaCtrl.CanCopy" />
+	</menu_item_call>
+	<menu_item_call name="paste" label="Paste"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="MediaCtrl.Paste" userdata="0" />
+		<on_enable function="MediaCtrl.CanPaste" />
+	</menu_item_call>
+	<menu_item_call name="undo" label="Undo"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="MediaCtrl.Undo" userdata="0" />
+		<on_enable function="MediaCtrl.CanUndo" />
+	</menu_item_call>
+	<menu_item_call name="redo" label="Redo"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="MediaCtrl.Redo" userdata="0" />
+		<on_enable function="MediaCtrl.CanRedo" />
+	</menu_item_call>
+	<menu_item_call name="delete" label="Delete"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="MediaCtrl.Delete" userdata="0" />
+		<on_enable function="MediaCtrl.CanDelete" />
+	</menu_item_call>
+	<menu_item_separator />
+	<menu_item_call name="show_source" label="Show source"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="MediaCtrl.ShowSource" userdata="0" />
+		<on_enable function="MediaCtrl.CanShowSource" />
+	</menu_item_call>
+	<menu_item_separator />
+	<menu_item_call name="reload_page" label="Reload page"
+	 left="0" bottom_delta="-18" width="128" height="18">
+		<on_click function="ReloadPage" userdata="0" />
+	</menu_item_call>
+</menu>

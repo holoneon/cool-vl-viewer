@@ -1,0 +1,51 @@
+/**
+ * @file llviewerjoint.h
+ * @brief Implementation of LLViewerJoint class
+ *
+ * $LicenseInfo:firstyear=2001&license=viewerlgpl$
+ *
+ * Copyright (c) 2001-2009, Linden Research, Inc.
+ *
+ * Second Life Viewer Source Code
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation; version 2.1 of the License only.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, write to the Free Software Foundation, Inc.
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA"
+ * $/LicenseInfo$
+ */
+
+#pragma once
+
+#include "llavatarjoint.h"
+
+class LLViewerJoint : public virtual LLAvatarJoint
+{
+public:
+	LLViewerJoint();
+
+	// *TODO: Only used for LLVOAvatarSelf::mScreenp *DOES NOT INITIALIZE*
+	// mResetAfterRestoreOldXform*
+	LLViewerJoint(const std::string& name, LLJoint* parent = NULL);
+
+	LL_INLINE LLViewerJoint* asViewerJoint() override	{ return this; }
+
+	// Render character hierarchy. Traverses the entire joint hierarchy,
+	// setting up transforms and calling the drawShape(). Derived classes may
+	// add text/graphic output. Returns the triangle count
+	U32 render(F32 pixel_area, bool first_pass = true,
+			   bool is_dummy = false) override;
+
+	// Draws the shape attached to a joint. Called by render().
+	virtual U32 drawShape(bool first_pass = true, bool is_dummy = false)
+	{
+		return 0;
+	}
+};

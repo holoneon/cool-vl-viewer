@@ -1,0 +1,143 @@
+Being a totally anal coder, and having my own coding style(s) that I have been
+using for decades, I am also totally hostile to other coding styles... If you
+wish to contribute to this viewer sources, please do comply to the following
+rules.
+
+The coding style used in these sources (*.c/*.cpp/*.h/*.inl files) mostly
+derives from LL's v1 viewer coding style (I do prefer the K&R style regarding
+curly brackets, which is more compact, but it would be too much work to convert
+all the source files to it), with personnal adjustments.
+
+All source files are encoded in the ISO8859-1 character set and each line shall
+be newline (\n) terminated (i.e. in the UNIX text file standard: no DOS/OS-X
+text file or UTF-8/16/whatever-ISO-or-ANSI encoding accepted for the sources).
+
+There should be no trailing space or tab in source file lines, and each source
+file shall end with an empty line (i.e. a newline character alone on last
+line).
+
+Tabs (\t) are *always* 4 spaces wide; any 4+spaces sequence should be replaced
+with a tab (\t) character in the sources.
+
+Every source line should, when possible, never be longer than 80 characters
+(with all tab characters accounting for 4 spaces).
+
+The C++-style comments (//) should be used everywhere, excepted in the License
+header block, where the C-style comment (/* <license here> */) shall be used.
+
+Doxygen markers shall not be used (and removed whenever an old source file
+containing some is edited).
+
+Names shall be kept short enough to be readable and not cause excessively
+verbose code. *Counter* example:
+char this_is_not_an_acceptable_variable_name;
+
+Global variables shall be camel-cased and start with a 'g', like so:
+extern S32 gSomeGlobalVariable;
+
+Thread-local global variables shall be camel-cased and start with a 't', like
+so:
+extern S32 tSomeThreadLocalGlobalVariable;
+
+Class and struture member non-static variables shall be camel-cased and start
+with a 'm', while static member variables shall start witha 's', like so:
+struct
+{
+	char*			mStringp;
+	size_t			mStringLength;
+	static size_t	sMaxStringLengh;
+};
+All classes found in the sources should already be following this rule to the
+letter, while many structures have not yet been converted...
+
+Local variables and functions shall be lower-cased. E.g.:
+static void some_module_local_function()
+{
+	char* some_local_strp = NULL;
+	.../...
+}
+
+Pointer variable names should end with a 'p' (sadly, there are so many such
+variables in the original sources which break this "rule" that I could not
+yet change them all to comply). E.g.
+extern gGlobaVariablep;
+char* local_stringp;
+void* mUserDataMemberVariablep;
+
+Class names shall start with either "LL" or the initials of the author,
+followed with a capital letter and the camel-cased class name. E.g.
+class HBSomeClass
+{
+.../...
+};
+This should also apply to struture names, even though there are many stuctures
+in the old code I could not yet convert to this rule.
+
+Class (and structure) methods shall be camel-cased and start with a minuscule.
+E.g.
+class LLSomeClass
+{
+public:
+	void someMethod();
+};
+
+Variable types shall include the pointer type. E.g. a pointer to a char
+variable shall be declared as:
+	char* variablep; // The type of variablep is: char*
+and *NOT* as:
+	char *variablep;
+When multiple variable pointers are declared, use one line per pointer. E.g.:
+	char* variablep1 = NULL;
+	char* variablep2 = NULL;
+and *NOT*:
+	char *variablep1 = NULL, *variablep2 = NULL;
+
+It is perfectly acceptable (and actually preferred) to test for equality
+against a constant with a variable as the left member of the test: it is
+easier to read and understand this way, and if you are *stupid* enough to
+type '=' instead of '==' in the test, then you *deserve* the bug you will
+encounter !
+E.g.:
+	if (variable == 0)
+	{
+		.../...
+	}
+	else if (variable == 1)
+	{
+		.../...
+	}
+	else
+	{
+		.../...
+	}
+is preferred to:
+	if (0 == variable)
+	{
+		.../...
+	}
+	else if (1 == variable)
+	{
+		.../...
+	}
+	else
+	{
+		.../...
+	}
+
+Even though the viewer code is now C++20-compliant, 'NULL' (shorter, already
+used everywhere in the original code) is preferred over 'nullptr, excepted
+where 'nullptr' is needed to disambiguate the pointer type (which would
+otherwise require a static cast in the (Type*)NULL form).
+
+Similarly, static casts are done in the good old (and shorter/easier to read)
+C-style. I.e. there should be no 'static_cast<SomeType>(some_variable)' in the
+code and you shall instead use: '(SomeType)some_variable'
+
+C 'typedef' is also prefered to C++11 'using', when not used in C++11 templates
+requiring the latter; typedef-defined types should be lower-cased and end with
+"_t". E.g.
+typedef std::vector<std::string> string_vec_t;
+
+.../... More to follow as I think of it...
+
+Henri Beauchamp.
