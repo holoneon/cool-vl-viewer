@@ -1,0 +1,9 @@
+# Build/dependency outputs
+/linden/bin/
+/linden/include/
+/linden/lib/
+
+/linden/python
+
+# Viewer build output
+/viewer-linux-x86_64-release/

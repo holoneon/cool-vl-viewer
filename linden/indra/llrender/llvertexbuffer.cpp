@@ -1653,64 +1653,35 @@ bool LLVertexBuffer::bindGLIndicesFast()
 //static
 std::string LLVertexBuffer::listMissingBits(U32 unsatisfied_mask)
 {
-	std::string report;
-	if (unsatisfied_mask & MAP_VERTEX)
-	{
-		report = "\n - Missing vert pos";
-	}
-	if (unsatisfied_mask & MAP_NORMAL)
-	{
-		report += "\n - Missing normals";
-	}
-	if (unsatisfied_mask & MAP_TEXCOORD0)
-	{
-		report += "\n - Missing tex coord 0";
-	}
-	if (unsatisfied_mask & MAP_TEXCOORD1)
-	{
-		report += "\n - Missing tex coord 1";
-	}
-	if (unsatisfied_mask & MAP_TEXCOORD2)
-	{
-		report += "\n - Missing tex coord 2";
-	}
-	if (unsatisfied_mask & MAP_TEXCOORD3)
-	{
-		report += "\n - Missing tex coord 3";
-	}
-	if (unsatisfied_mask & MAP_COLOR)
-	{
-		report += "\n - Missing vert color";
-	}
-	if (unsatisfied_mask & MAP_EMISSIVE)
-	{
-		report += "\n - Missing emissive";
-	}
-	if (unsatisfied_mask & MAP_TANGENT)
-	{
-		report += "\n - Missing tangent";
-	}
-	if (unsatisfied_mask & MAP_WEIGHT)
-	{
-		report += "\n - Missing weight";
-	}
-	if (unsatisfied_mask & MAP_WEIGHT4)
-	{
-		report += "\n - Missing weight4";
-	}
-	if (unsatisfied_mask & MAP_CLOTHWEIGHT)
-	{
-		report += "\n - Missing cloth weight";
-	}
-	if (unsatisfied_mask & MAP_TEXTURE_INDEX)
-	{
-		report += "\n - Missing tex index";
-	}
-	if (unsatisfied_mask & TYPE_INDEX)
-	{
-		report += "\n - Missing indices";
-	}
-	return report;
+        std::string report;
+
+        // Avoid GCC 14/libstdc++ false positive with SSO buffer + -Warray-bounds.
+        report.reserve(256);
+
+#define ADD_MISSING(mask, text) \
+        if (unsatisfied_mask & (mask)) \
+        { \
+                report.append(text); \
+        }
+
+        ADD_MISSING(MAP_VERTEX,        "\n - Missing vert pos");
+        ADD_MISSING(MAP_NORMAL,        "\n - Missing normals");
+        ADD_MISSING(MAP_TEXCOORD0,     "\n - Missing tex coord 0");
+        ADD_MISSING(MAP_TEXCOORD1,     "\n - Missing tex coord 1");
+        ADD_MISSING(MAP_TEXCOORD2,     "\n - Missing tex coord 2");
+        ADD_MISSING(MAP_TEXCOORD3,     "\n - Missing tex coord 3");
+        ADD_MISSING(MAP_COLOR,         "\n - Missing vert color");
+        ADD_MISSING(MAP_EMISSIVE,      "\n - Missing emissive");
+        ADD_MISSING(MAP_TANGENT,       "\n - Missing tangent");
+        ADD_MISSING(MAP_WEIGHT,        "\n - Missing weight");
+        ADD_MISSING(MAP_WEIGHT4,       "\n - Missing weight4");
+        ADD_MISSING(MAP_CLOTHWEIGHT,   "\n - Missing cloth weight");
+        ADD_MISSING(MAP_TEXTURE_INDEX, "\n - Missing tex index");
+        ADD_MISSING(TYPE_INDEX,        "\n - Missing indices");
+
+#undef ADD_MISSING
+
+        return report;
 }
 
 // Set for rendering. For the legacy EE renderer only.
